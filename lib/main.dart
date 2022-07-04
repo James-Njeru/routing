@@ -9,8 +9,11 @@ class FlutterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyHome()
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyHome(),
+        '/second': (context) => const SecondPage(),
+      },
     );
   }
 }
@@ -20,6 +23,7 @@ class MyHome extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        //automaticallyImplyLeading: false,
         title: const Text('First Route'),
         backgroundColor: Colors.green,
       ),
@@ -27,9 +31,9 @@ class MyHome extends StatelessWidget{
         child: ElevatedButton(
           child: const Text('Go to 2nd route'),
           onPressed: () {
-            Navigator.push(
+            Navigator.pushNamed(
               context,
-              MaterialPageRoute(builder: (context) => SecondPage()),
+              '/second',
             );
           },
         ),
